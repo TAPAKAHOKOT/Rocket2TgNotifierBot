@@ -25,7 +25,7 @@ class User(Base, BaseModel):
     role_id = Column(ForeignKey('roles.id', ondelete="SET NULL"), nullable=True)
 
     chat_id = Column(Integer, nullable=False, unique=True)
-    username = Column(String(256), nullable=True, unique=True)
+    username = Column(String(256), nullable=True)
 
     last_activity_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
     updated_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
