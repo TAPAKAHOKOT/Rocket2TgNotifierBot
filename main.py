@@ -5,8 +5,9 @@ from Settings import settings
 from Handlers import *
 from Middlewares import (
     LoggingMiddleware,
+    UserMiddleware,
     SetupRoleMiddleware,
-    UserMiddleware
+    TranslationMiddleware
 )
 from Filters import RolesFilter
 
@@ -20,6 +21,7 @@ def setup_middlewares():
     settings.dp.middleware.setup(LoggingMiddleware())
     settings.dp.middleware.setup(UserMiddleware())
     settings.dp.middleware.setup(SetupRoleMiddleware())
+    settings.dp.middleware.setup(TranslationMiddleware())
 
 def bind_filters():
     settings.dp.filters_factory.bind(RolesFilter)

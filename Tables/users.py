@@ -36,6 +36,13 @@ class User(Base, BaseModel):
         lazy='joined'
     )
 
+    user_settings = relationship(
+        'UserSettings',
+        lazy='joined',
+        uselist=False,
+        backref='user_settings'
+    )
+
 
     def get_class(self):
         return User

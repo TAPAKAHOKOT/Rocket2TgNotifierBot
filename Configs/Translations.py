@@ -3,20 +3,25 @@ from .languages.russian import translations as russian
 import logging
 
 class Translations:
-    def __init__(self, language: str, get_user_language: callable):
-        self.get_user_language = get_user_language
-
-        self.language = language
+    def __init__(self, default_language: str):
+        self.default_language = default_language
         self.all_translations = {
             'english': english,
             'russian': russian
         }
-        self.set_locale_translations()
+        self.current_language = None
     
-    def set_locale_translations(self):
-        try: self.locale_translations = self.all_translations[self.language]
+    def set_translation(self, user_language: str) -> str:
+        if user_language in self.all_translations.keys():
+            self.current_language = user_language
+    
+    def get_translation(self):
+        try:
+            if self.current_language:
+                return self.all_translations[self.current_language]
+            return self.all_translations[self.default_language]
         except KeyError:
-            logging.error(f'key {self.language} not found in Translations.all_translations')
+            logging.error(f'key {self.default_language} not found in Translations.all_translations')
             raise KeyError
     
     def get_recoursive(self, keys: list, translations: dict, default: any = '') -> str:
@@ -27,10 +32,9 @@ class Translations:
         return default
     
     def get(self, key: str, default: any = ''):
-        self.update_locale_translations()
         return self.get_recoursive(
             key.split('.'),
-            self.locale_translations
+            self.get_translation()
         )
     
     def get_in_all_languages(self, key: str) -> list:
@@ -43,13 +47,3 @@ class Translations:
             )
             if value: values.append(value)
         return values
-
-    
-    def load_language(self) -> str:
-        return self.get_user_language()
-    
-    def update_locale_translations(self):
-        language = self.load_language()
-        if self.language != language:
-            self.language = language
-            self.set_locale_translations()

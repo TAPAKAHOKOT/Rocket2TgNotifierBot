@@ -16,6 +16,7 @@ from datetime import datetime
 from Database import Base
 from Database.metadata import metadata
 from Tables.BaseModel import BaseModel
+from Configs import get_default_language
 
 class UserSettings(Base, BaseModel):
     __tablename__ = 'user_settings'
@@ -24,18 +25,13 @@ class UserSettings(Base, BaseModel):
     id = Column(Integer, autoincrement=True, primary_key=True)
     user_id = Column(ForeignKey('users.id', ondelete="CASCADE"), nullable=True)
 
-    language = Column(String(256), nullable=True, default='ru')
+    language = Column(String(256), nullable=True, default=get_default_language())
     rocket_domain = Column(String(256), nullable=True)
     rocket_token = Column(String(256), nullable=True)
     rocket_user_id = Column(String(256), nullable=True)
 
     updated_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
     created_at = Column(DateTime, default=datetime.utcnow, server_default=text('now()'))
-    
-    user = relationship(
-        'User',
-        lazy='joined'
-    )
 
 
     def get_class(self):

@@ -8,26 +8,6 @@ from Callbacks import settings_callback, example_callback
 from Keyboards import example_keyboard
 
 
-# <<<<<<<<<<<<<<<<<< Callback action with [filtering by type=language] >>>>>>>>>>>>>>>>>>
-@settings.dp.callback_query_handler(settings_callback.main_inline_data.filter(value='language'))
-async def settings_callback_language(call: types.CallbackQuery, callback_data: dict):
-    inline = SettingsService.get_settings_languages_callback()
-    await call.message.edit_text(
-        translations.get('callbacks.answers.choose-language'), 
-        reply_markup=inline
-    )
-
-
-# <<<<<<<<<<<<<<<<<< Callback action with [filtering by type=language] >>>>>>>>>>>>>>>>>>
-@settings.dp.callback_query_handler(settings_callback.language_inline_data.filter())
-async def settings_callback_language_callback(call: types.CallbackQuery, callback_data: dict):
-    SettingsService.update_language(callback_data['value'])
-    await call.message.answer(
-        translations.get('callbacks.answers.language-updated-to').format(language=callback_data['value'].title()),
-        reply_markup=example_keyboard.get_main_keyboard()
-    )
-
-
 # <<<<<<<<<<<<<<<<<< Callback action with [filtering by type=number] >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(example_callback.example_inline_data.filter(type="number"))
 async def callback_number_example(call: types.CallbackQuery, callback_data: dict):

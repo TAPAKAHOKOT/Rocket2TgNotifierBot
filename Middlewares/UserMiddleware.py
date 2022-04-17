@@ -6,7 +6,10 @@ from aiogram.types import Message
 from datetime import datetime
 
 from Database import engine
-from Tables import User
+from Tables import (
+    User,
+    UserSettings
+)
 
 class UserMiddleware(BaseMiddleware):
     async def on_pre_process_message(self, message: Message, data: dict):
@@ -15,20 +18,28 @@ class UserMiddleware(BaseMiddleware):
 
         with Session(engine) as session, session.begin():
             user: User = User.find_by_chat_id(session, chat_id)
-
             if not user:
                 user = User(
                     chat_id=chat_id,
                     username=username
                 )
             user.last_activity_at = datetime.now()
-
             session.add(user)
+
+        with Session(engine, expire_on_commit=False) as session, session.begin():
+            user: User = User.find_by_chat_id(session, chat_id)
+            user_settings: UserSettings = user.user_settings
+            if not user_settings:
+                user_settings = UserSettings(
+                    user_id = user.id
+                )
+            session.add(user_settings)
             
             data['user'] = user
-            data['user_relations'] = {
-                'role': user.role
-            }
-
+            data['role'] = user.role
+            data['user_settings'] = user_settings
+    
+    async def on_process_callback_query(self, message: Message, data: dict):
+        await self.on_pre_process_message(message, data)
 
         

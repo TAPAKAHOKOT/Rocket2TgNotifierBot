@@ -8,7 +8,7 @@ from Tables import Role
 class RolesFilter(BoundFilter):
     async def check(self, message: Message):
         data = ctx_data.get()
-        user_role: Role = data['user_relations']['role']
+        user_role: Role = data['role']
 
         role = user_role.role if user_role else None
 

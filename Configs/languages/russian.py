@@ -1,7 +1,7 @@
 translations = {
     'commands': {
         'answers': {
-            'start': 'Добро пожаловать, {user_name}!\nЯ - *{bot_name}*, я шаблон для ботов',
+            'start': 'Добро пожаловать, {user_name}!\nЯ - *{bot_name}*, помогу тебе получать уведомления из rocket. Введи /help чтобы получить инструкцию',
             'help': '/help команда',
             'settings': 'Выбери настройку',
             'role': {

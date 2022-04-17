@@ -37,11 +37,9 @@ async def command_help_example(message: types.Message):
 # <<<<<<<<<<<<<<<<<< Command with callback >>>>>>>>>>>>>>>>>>
 @settings.dp.message_handler(RolesFilter(), commands=["admin"])
 async def command_admin_example(message: types.Message, is_root, is_admin):
-
     answer_message = translations.get('commands.answers.role.root') if is_root else (
         translations.get('commands.answers.role.admin') if is_admin else (
             translations.get('commands.answers.role.user')
         )
     )
-
     await message.answer(answer_message)

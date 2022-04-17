@@ -1,7 +1,7 @@
 translations = {
     'commands': {
         'answers': {
-            'start': 'Welcome, {user_name}!\nI am - *{bot_name}*, i am bot tamplate',
+            'start': 'Welcome, {user_name}!\nI am - *{bot_name}*, i will help you to get notifications from rocket. Press /help to get an instruction',
             'help': '/help command',
             'settings': 'Choose a setting',
             'role': {
