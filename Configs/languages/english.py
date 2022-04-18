@@ -27,15 +27,23 @@ translations = {
         }
     },
     'callbacks': {
+        'default': {
+            'back': 'Back',
+            'cancel': 'Cansel',
+            'check-settings': 'Check settings',
+            'check-settings-status': 'Settings checking status: {status}'
+        },
         'answers': {
             'number-value': "Number value: {value}",
             'letter-value': "Letter value: {value}",
             'choose-language': 'Choose language',
+            'choose-rocket-setting': 'Choose rocket setting\ndomain={domain}\nuser_id={user_id}\ntoken={token}',
             'language-updated-to': 'Language updated to {language}'
         },
         'keyboards': {
             'settings': {
-                'language': 'Language'
+                'language': 'Language',
+                'rocket': 'Rocket'
             },
             'example': {
                 '1': '1',
@@ -44,6 +52,16 @@ translations = {
                 'a': 'A',
                 'b': 'B',
                 'c': 'C'
+            }
+        },
+        'state-back': {
+            'rocket-form': "Past {value} or press 'Cancel'"
+        },
+        'settings': {
+            'rocket': {
+                'domain': 'Domain',
+                'user-id': 'User id',
+                'token': 'Token'
             }
         }
     }

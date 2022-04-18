@@ -27,15 +27,22 @@ translations = {
         }
     },
     'callbacks': {
+        'default': {
+            'back': 'Назад',
+            'cancel': 'Отменить',
+            'check-settings': 'Проверить настройки'
+        },
         'answers': {
             'number-value': "Значение номера: {value}",
             'letter-value': "Значение буквы: {value}",
             'choose-language': 'Выбери язык',
+            'choose-rocket-setting': 'Выбери настройку рокета\nдомен={domain}\nuser_id={user_id}\ntoken={token}',
             'language-updated-to': 'Язык обновлен на {language}'
         },
         'keyboards': {
             'settings': {
-                'language': 'Язык'
+                'language': 'Язык',
+                'rocket': 'Rocket'
             },
             'example': {
                 '1': '1',
@@ -44,6 +51,16 @@ translations = {
                 'a': 'А',
                 'b': 'Б',
                 'c': 'В'
+            }
+        },
+        'state-back': {
+            'rocket-form': "Вставьте {value} или нажмите 'Отменить'"
+        },
+        'settings': {
+            'rocket': {
+                'domain': 'Домен',
+                'user-id': 'User id',
+                'token': 'Token'
             }
         }
     }

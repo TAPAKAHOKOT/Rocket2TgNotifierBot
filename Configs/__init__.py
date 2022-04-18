@@ -8,7 +8,7 @@ app_config.read("Configs/app.ini")
 
 def get_available_languages():
     languages = app_config.get('DEFAULT', 'available-languages').split(',')
-    return map(lambda l: l.title(), languages)
+    return {l: l.title() for l in languages}
 
 
 def get_default_language() -> str:
