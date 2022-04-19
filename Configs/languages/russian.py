@@ -30,7 +30,8 @@ translations = {
         'default': {
             'back': 'Назад',
             'cancel': 'Отменить',
-            'check-settings': 'Проверить настройки'
+            'check-settings': 'Проверить настройки',
+            'instruction': 'Инструкция'
         },
         'answers': {
             'number-value': "Значение номера: {value}",
@@ -60,7 +61,16 @@ translations = {
             'rocket': {
                 'domain': 'Домен',
                 'user-id': 'User id',
-                'token': 'Token'
+                'token': 'Token',
+                'instruction': {
+                    '1': 'Нажмите на иконку своего профиля в верхнем левом углу',
+                    '2': 'Во всплывшем меню выберете "My account"',
+                    '3': 'На открывшейся странице выберете пункт меню "Personal Access Tokens"',
+                    '4': 'Введите любое название токена, поставьте галочку на "Ignore Two Factor Authentification" и нажмите "Add"',
+                    '5': 'Во всплывшем popup-е скопируйте "Token" и "User id" в свои заметки, чтобы отправить их боту',
+                    '6': 'В строке с адресом страницы скопируйте домен (выделен на фото)',
+                    '7': 'Все скопированные данные нужны для настройки бота в меню /settings->rocket пункты domain, user id и token'
+                }
             }
         }
     }

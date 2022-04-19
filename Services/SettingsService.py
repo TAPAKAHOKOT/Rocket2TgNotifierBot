@@ -2,7 +2,6 @@ from sqlalchemy.orm import Session
 from aiogram.types.inline_keyboard import InlineKeyboardMarkup
 
 import requests as r
-import json
 
 from Callbacks import settings_callback
 from Database import engine

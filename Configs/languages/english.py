@@ -31,7 +31,8 @@ translations = {
             'back': 'Back',
             'cancel': 'Cansel',
             'check-settings': 'Check settings',
-            'check-settings-status': 'Settings checking status: {status}'
+            'check-settings-status': 'Settings checking status: {status}',
+            'instruction': 'Instruction'
         },
         'answers': {
             'number-value': "Number value: {value}",
@@ -61,7 +62,16 @@ translations = {
             'rocket': {
                 'domain': 'Domain',
                 'user-id': 'User id',
-                'token': 'Token'
+                'token': 'Token',
+                'instruction': {
+                    '1': 'Click on your profile icon in the left corner sphere',
+                    '2': 'In the final menu select "My account"',
+                    '3': 'On the page that opens, select the menu item "Personal access tokens"',
+                    '4': 'Enter any token name, check "Ignore Two Factor authentication" and click "Add"',
+                    '5': 'In the comprehensive popup, copy "Token" and "User id" into your notes to send to the bot',
+                    '6': 'In the line with the page address, copy the domain (highlighted in the photo)',
+                    '7': 'All copied data is needed to configure bot in /settings->rocket menu to reject domain, userid and token'
+                }
             }
         }
     }

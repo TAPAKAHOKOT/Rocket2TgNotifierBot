@@ -68,7 +68,8 @@ class SettingsCallback:
             'user_id': translations.get('callbacks.settings.rocket.user-id'),
             'token': translations.get('callbacks.settings.rocket.token'),
             'back': translations.get('callbacks.default.back'),
-            'check-settings': translations.get('callbacks.default.check-settings')
+            'check-settings': translations.get('callbacks.default.check-settings'),
+            'instruction': translations.get('callbacks.default.instruction')
         }
 
         for key, value in inline_bts.items():

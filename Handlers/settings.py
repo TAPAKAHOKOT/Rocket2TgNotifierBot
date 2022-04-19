@@ -1,5 +1,7 @@
-from aiogram.dispatcher import FSMContext, Dispatcher
+from aiogram.dispatcher import FSMContext
 from aiogram import types
+
+import sys
 
 from Settings import settings
 from Configs import translations
@@ -74,6 +76,40 @@ async def settings_callback_language_callback(call: types.CallbackQuery, user_se
     await call.message.answer(
         translations.get('callbacks.default.check-settings-status').format(status='✅' if check_result else '❌')
     )
+
+
+@settings.dp.callback_query_handler(settings_callback.settings_inline_data.filter(settings='rocket', value='instruction'))
+async def settings_callback_language_callback(call: types.CallbackQuery, user_settings: UserSettings):
+    
+    root_path = sys.path[0]
+    images = {
+        '1': root_path + '/Files/Help/Images/1.png',
+        '2': root_path + '/Files/Help/Images/2.png',
+        '3': root_path + '/Files/Help/Images/3.png',
+        '4': root_path + '/Files/Help/Images/4.png',
+        '5': root_path + '/Files/Help/Images/5.png',
+        '6': root_path + '/Files/Help/Images/6.png'
+    }
+
+    await call.message.answer(translations.get('callbacks.settings.rocket.instruction.1'))
+    await call.message.answer_photo(photo=open(images['1'], 'rb'))
+
+    await call.message.answer(translations.get('callbacks.settings.rocket.instruction.2'))
+    await call.message.answer_photo(photo=open(images['2'], 'rb'))
+
+    await call.message.answer(translations.get('callbacks.settings.rocket.instruction.3'))
+    await call.message.answer_photo(photo=open(images['3'], 'rb'))
+
+    await call.message.answer(translations.get('callbacks.settings.rocket.instruction.4'))
+    await call.message.answer_photo(photo=open(images['4'], 'rb'))
+
+    await call.message.answer(translations.get('callbacks.settings.rocket.instruction.5'))
+    await call.message.answer_photo(photo=open(images['5'], 'rb'))
+
+    await call.message.answer(translations.get('callbacks.settings.rocket.instruction.6'))
+    await call.message.answer_photo(photo=open(images['6'], 'rb'))
+
+    await call.message.answer(translations.get('callbacks.settings.rocket.instruction.7'))
 
 
 @settings.dp.callback_query_handler(settings_callback.state_back_inline_data.filter(state='domain'))
