@@ -1,8 +1,8 @@
 """Initial
 
-Revision ID: 4c45ee24ffea
+Revision ID: 4f7c8c1aef14
 Revises: 
-Create Date: 2022-04-17 17:42:38.185666
+Create Date: 2022-04-19 22:37:23.599591
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '4c45ee24ffea'
+revision = '4f7c8c1aef14'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -51,6 +51,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('language', sa.String(length=256), nullable=True),
+    sa.Column('send_notifications', sa.Boolean(), nullable=False),
     sa.Column('rocket_domain', sa.String(length=256), nullable=True),
     sa.Column('rocket_token', sa.String(length=256), nullable=True),
     sa.Column('rocket_user_id', sa.String(length=256), nullable=True),

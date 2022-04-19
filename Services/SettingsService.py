@@ -28,23 +28,14 @@ class SettingsService:
     
 
     @staticmethod
-    def set_settings_rocket_domain(user_settings: UserSettings, domain: str) -> InlineKeyboardMarkup:
+    def set_settings_rocket(user_settings: UserSettings, field: str, value: str) -> InlineKeyboardMarkup:
         with Session(engine, expire_on_commit=False) as session, session.begin():
-            user_settings.rocket_domain = domain
-            session.add(user_settings)
-    
-
-    @staticmethod
-    def set_settings_rocket_user_id(user_settings: UserSettings, user_id: str) -> InlineKeyboardMarkup:
-        with Session(engine, expire_on_commit=False) as session, session.begin():
-            user_settings.rocket_user_id = user_id
-            session.add(user_settings)
-    
-
-    @staticmethod
-    def set_settings_rocket_token(user_settings: UserSettings, token: str) -> InlineKeyboardMarkup:
-        with Session(engine, expire_on_commit=False) as session, session.begin():
-            user_settings.rocket_token = token
+            if field == 'domain':
+                user_settings.rocket_domain = value
+            elif field == 'user_id':
+                user_settings.rocket_user_id = value
+            elif field == 'token':
+                user_settings.rocket_token = value
             session.add(user_settings)
     
 
@@ -63,7 +54,7 @@ class SettingsService:
             if response_status == 200:
                 return True
         except Exception:
-            pass
+            return False
 
         return False
     

@@ -31,6 +31,7 @@ translations = {
             'back': 'Назад',
             'cancel': 'Отменить',
             'check-settings': 'Проверить настройки',
+            'check-settings-status': 'Статус проверки настроек: {status}',
             'instruction': 'Инструкция'
         },
         'answers': {

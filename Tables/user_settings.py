@@ -1,14 +1,11 @@
-from email.policy import default
 from sqlalchemy import (
     ForeignKey,
     Column,
     String,
+    Boolean,
     Integer,
     DateTime,
     text
-)
-from sqlalchemy.orm import (
-    relationship
 )
 
 from datetime import datetime
@@ -26,6 +23,7 @@ class UserSettings(Base, BaseModel):
     user_id = Column(ForeignKey('users.id', ondelete="CASCADE"), nullable=True)
 
     language = Column(String(256), nullable=True, default=get_default_language())
+    send_notifications = Column(Boolean, default=False, nullable=False)
     rocket_domain = Column(String(256), nullable=True)
     rocket_token = Column(String(256), nullable=True)
     rocket_user_id = Column(String(256), nullable=True)
