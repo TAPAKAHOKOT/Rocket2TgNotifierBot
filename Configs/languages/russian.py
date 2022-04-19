@@ -63,6 +63,7 @@ translations = {
                 'domain': 'Домен',
                 'user-id': 'User id',
                 'token': 'Token',
+                'send_notifications': 'Уведомления {status}',
                 'instruction': {
                     '1': 'Нажмите на иконку своего профиля в верхнем левом углу',
                     '2': 'Во всплывшем меню выберете "My account"',

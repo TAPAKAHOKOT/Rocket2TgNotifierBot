@@ -63,6 +63,7 @@ translations = {
                 'domain': 'Domain',
                 'user-id': 'User id',
                 'token': 'Token',
+                'send_notifications': 'Notifications {status}',
                 'instruction': {
                     '1': 'Click on your profile icon in the left corner sphere',
                     '2': 'In the final menu select "My account"',

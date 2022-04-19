@@ -61,15 +61,16 @@ class SettingsCallback:
         return language_inline
 
     
-    def get_rocket_inline(self) -> InlineKeyboardMarkup:
+    def get_rocket_inline(self, data: dict) -> InlineKeyboardMarkup:
         rocket_inline = InlineKeyboardMarkup(row_width=2)
         inline_bts = {
             'domain': translations.get('callbacks.settings.rocket.domain'),
             'user_id': translations.get('callbacks.settings.rocket.user-id'),
             'token': translations.get('callbacks.settings.rocket.token'),
+            'send_notifications': translations.get('callbacks.settings.rocket.send_notifications').format(status=data['notifications_status']),
             'back': translations.get('callbacks.default.back'),
-            'check-settings': translations.get('callbacks.default.check-settings'),
-            'instruction': translations.get('callbacks.default.instruction')
+            'instruction': translations.get('callbacks.default.instruction'),
+            'check_settings': translations.get('callbacks.default.check-settings')
         }
 
         for key, value in inline_bts.items():

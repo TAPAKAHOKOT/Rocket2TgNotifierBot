@@ -25,7 +25,9 @@ async def settings_callback_language(call: types.CallbackQuery):
 
 @settings.dp.callback_query_handler(settings_callback.menu_inline_data.filter(value='rocket'))
 async def settings_callback_language(call: types.CallbackQuery, user_settings: UserSettings):
-    inline = SettingsService.get_settings_rocket_callback()
+    inline = SettingsService.get_settings_rocket_callback({
+        'notifications_status': '✅' if user_settings.send_notifications else '❌'
+    })
     await call.message.edit_text(
         translations.get('callbacks.answers.choose-rocket-setting').format(
             domain=user_settings.rocket_domain,
@@ -78,12 +80,28 @@ async def settings_callback_language_callback(call: types.CallbackQuery, callbac
     )
 
 
-@settings.dp.callback_query_handler(settings_callback.settings_inline_data.filter(settings='rocket', value='check-settings'))
+@settings.dp.callback_query_handler(settings_callback.settings_inline_data.filter(settings='rocket', value='check_settings'))
 async def settings_callback_language_callback(call: types.CallbackQuery, user_settings: UserSettings):
     check_result = SettingsService.check_settings_rocket(user_settings)
 
     await call.message.answer(
         translations.get('callbacks.default.check-settings-status').format(status='✅' if check_result else '❌')
+    )
+
+
+@settings.dp.callback_query_handler(settings_callback.settings_inline_data.filter(settings='rocket', value='send_notifications'))
+async def settings_callback_language_callback(call: types.CallbackQuery, user_settings: UserSettings):
+    SettingsService.update_settings_rocket_send_notifications(user_settings)
+    inline = SettingsService.get_settings_rocket_callback({
+        'notifications_status': '✅' if user_settings.send_notifications else '❌'
+    })
+    await call.message.edit_text(
+        translations.get('callbacks.answers.choose-rocket-setting').format(
+            domain=user_settings.rocket_domain,
+            user_id=user_settings.rocket_user_id,
+            token=user_settings.rocket_token
+        ), 
+        reply_markup=inline
     )
 
 
@@ -124,7 +142,9 @@ async def settings_callback_language_callback(call: types.CallbackQuery, user_se
 @settings.dp.callback_query_handler(settings_callback.state_back_inline_data.filter(), state='*')
 async def settings_callback_language_callback(call: types.CallbackQuery, state: FSMContext, user_settings: UserSettings):
     await state.finish()
-    inline = SettingsService.get_settings_rocket_callback()
+    inline = SettingsService.get_settings_rocket_callback({
+        'notifications_status': '✅' if user_settings.send_notifications else '❌'
+    })
     await call.message.edit_text(
         translations.get('callbacks.answers.choose-rocket-setting').format(
             domain=user_settings.rocket_domain,
@@ -150,7 +170,9 @@ async def rocket_form_handler(message: types.Message, state: FSMContext, user_se
 
     SettingsService.set_settings_rocket(user_settings, state_name, message.text)
 
-    inline = SettingsService.get_settings_rocket_callback()
+    inline = SettingsService.get_settings_rocket_callback({
+        'notifications_status': '✅' if user_settings.send_notifications else '❌'
+    })
     await message.answer(
         translations.get('callbacks.answers.choose-rocket-setting').format(
             domain=user_settings.rocket_domain,

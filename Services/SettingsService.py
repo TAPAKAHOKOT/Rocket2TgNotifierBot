@@ -23,8 +23,8 @@ class SettingsService:
     
 
     @staticmethod
-    def get_settings_rocket_callback() -> InlineKeyboardMarkup:
-        return settings_callback.get_rocket_inline()
+    def get_settings_rocket_callback(data: dict) -> InlineKeyboardMarkup:
+        return settings_callback.get_rocket_inline(data)
     
 
     @staticmethod
@@ -57,6 +57,13 @@ class SettingsService:
             return False
 
         return False
+    
+
+    @staticmethod
+    def update_settings_rocket_send_notifications(user_settings: UserSettings) -> bool:
+        with Session(engine, expire_on_commit=False) as session, session.begin():
+            user_settings.send_notifications = not user_settings.send_notifications
+            session.add(user_settings)
     
 
     @staticmethod
