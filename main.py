@@ -1,5 +1,7 @@
 import logging
 from aiogram import executor
+from asyncio import create_task
+
 from Settings import settings
 
 from Handlers import *
@@ -10,9 +12,11 @@ from Middlewares import (
     TranslationMiddleware
 )
 from Filters import RolesFilter
+from Services import ScheduleService
 
 async def on_startup(x):
     logging.info('Bot started')
+    create_task(ScheduleService.run_schedule())
 
 async def on_shutdown(x):
     logging.info('Bot finished')

@@ -3,7 +3,11 @@ from Filters.RolesFilter import RolesFilter
 
 from Settings import settings
 from Configs import translations
-from Services import SettingsService, ExampleService
+from Services import (
+    SettingsService, 
+    NotificationsService,
+    ExampleService
+)
 from Keyboards import example_keyboard
 from Filters import RolesFilter
 
@@ -43,3 +47,19 @@ async def command_admin_example(message: types.Message, is_root, is_admin):
         )
     )
     await message.answer(answer_message)
+
+
+@settings.dp.message_handler(commands=["test"])
+async def command_admin_example(message: types.Message, user, user_settings, user_last_messages):
+    new_messages = NotificationsService.update_notifications(user, user_settings, user_last_messages)
+
+    for new_message in new_messages.values():
+        data = new_message['data']
+        await message.answer(
+            '<<{room}>>\n\n{text}\n\n{author_name} ({author_username})'.format(
+                room=data['room_name'],
+                text=data['text'],
+                author_name=data['author']['name'],
+                author_username=data['author']['username']
+            )
+        )

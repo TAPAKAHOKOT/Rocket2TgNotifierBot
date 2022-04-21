@@ -15,6 +15,7 @@ from datetime import datetime
 
 from Database import Base
 from Database.metadata import metadata
+from Tables import user_last_messages
 from Tables.BaseModel import BaseModel
 
 class User(Base, BaseModel):
@@ -43,6 +44,11 @@ class User(Base, BaseModel):
         backref='user_settings'
     )
 
+    user_last_messages = relationship(
+        'UserLastMessages',
+        lazy='joined'
+    )
+
 
     def get_class(self):
         return User
@@ -52,6 +58,9 @@ class User(Base, BaseModel):
         return session.query(User).where(
                 User.chat_id == chat_id
             ).first()
+    
+    def get_all_users(session: Session) -> list:
+        return session.query(User).all()
 
 
 users_table = User.__table__

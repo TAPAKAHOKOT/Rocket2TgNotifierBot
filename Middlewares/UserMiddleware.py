@@ -38,6 +38,7 @@ class UserMiddleware(BaseMiddleware):
             data['user'] = user
             data['role'] = user.role
             data['user_settings'] = user_settings
+            data['user_last_messages'] = user.user_last_messages
     
     async def on_process_callback_query(self, message: Message, data: dict):
         await self.on_pre_process_message(message, data)
