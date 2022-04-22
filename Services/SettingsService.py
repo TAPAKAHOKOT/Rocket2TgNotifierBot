@@ -14,6 +14,8 @@ from Configs import (
 class SettingsService:
     @staticmethod
     def hide_param_part(param: str, size: int = 4) -> str:
+        if not param:
+            return ''
         return param[:size] + '...' + param[-size:]
 
 
