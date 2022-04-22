@@ -16,6 +16,7 @@ from datetime import datetime
 from Database import Base
 from Database.metadata import metadata
 from Tables.BaseModel import BaseModel
+from Tables.user_settings import UserSettings
 
 class User(Base, BaseModel):
     __tablename__ = 'users'
@@ -60,7 +61,9 @@ class User(Base, BaseModel):
     
 
     def get_all_users_with_notifications(session: Session) -> list:
-        return session.query(User).all()
+        return session.query(User).join(UserSettings).where(
+            UserSettings.send_notifications == True
+        ).all()
 
 
 users_table = User.__table__
