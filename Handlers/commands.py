@@ -7,17 +7,20 @@ from Services import (
     SettingsService, 
     NotificationsService
 )
+from Keyboards import commands_keyboards
 from Filters import RolesFilter
 
 
 # <<<<<<<<<<<<<<<<<< Command /start >>>>>>>>>>>>>>>>>>
 @settings.dp.message_handler(commands=["start"])
 async def command_start(message: types.Message):
+    keyboard = commands_keyboards.start
     await message.answer(
         translations.get('commands.answers.start').format(
             user_name=message['from']['first_name'], 
             bot_name=(await settings.bot.get_me()).first_name
-        )
+        ),
+        reply_markup=keyboard
     )
 
 

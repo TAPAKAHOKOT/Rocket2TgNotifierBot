@@ -5,6 +5,7 @@ class CommandsKeyboards:
     def __init__(self):
         self.start = types.ReplyKeyboardMarkup(resize_keyboard=True)
         self.start.add(
-            types.KeyboardButton(text=translations.get('keyboards.commands.random-film')), 
-            types.KeyboardButton(text=translations.get('keyboards.commands.random-serial'))
+            types.KeyboardButton(text='/start'), 
+            types.KeyboardButton(text='/help'),
+            types.KeyboardButton(text='/settings')
         )
