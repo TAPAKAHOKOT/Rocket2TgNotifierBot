@@ -1,4 +1,3 @@
-from email import message
 from aiogram.dispatcher import FSMContext, Dispatcher
 from aiogram import types
 
@@ -8,12 +7,12 @@ from Settings import settings
 from Configs import translations
 from Services import SettingsService
 from Callbacks import settings_callback
-from Keyboards import example_keyboard
 
-from Tables import UserSettings, user_settings
+from Tables import UserSettings
 from States import RocketForm
 
 
+# <<<<<<<<<<<<<<<<<< /settings callback => language >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(settings_callback.menu_inline_data.filter(value='language'))
 async def settings_callback_language(call: types.CallbackQuery):
     inline = SettingsService.get_settings_languages_callback()
@@ -23,39 +22,42 @@ async def settings_callback_language(call: types.CallbackQuery):
     )
 
 
+# <<<<<<<<<<<<<<<<<< /settings callback => rocket >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(settings_callback.menu_inline_data.filter(value='rocket'))
-async def settings_callback_language(call: types.CallbackQuery, user_settings: UserSettings):
+async def settings_callback_rocket(call: types.CallbackQuery, user_settings: UserSettings):
     inline = SettingsService.get_settings_rocket_callback({
         'notifications_status': '✅' if user_settings.send_notifications else '❌'
     })
     await call.message.edit_text(
         translations.get('callbacks.answers.choose-rocket-setting').format(
             domain=user_settings.rocket_domain,
-            user_id=user_settings.rocket_user_id,
-            token=user_settings.rocket_token
+            user_id=SettingsService.hide_param_part(user_settings.rocket_user_id),
+            token=SettingsService.hide_param_part(user_settings.rocket_token)
         ), 
         reply_markup=inline
     )
 
 
+# <<<<<<<<<<<<<<<<<< /settings callback => language => back >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(settings_callback.settings_inline_data.filter(value='back'))
-async def settings_callback_language_callback(call: types.CallbackQuery):
+async def settings_callback_language_back(call: types.CallbackQuery):
     inline = SettingsService.get_settings_main_callback()
     await call.message.edit_text(translations.get('commands.answers.settings'), reply_markup=inline)
 
 
+# <<<<<<<<<<<<<<<<<< /settings callback => language => callback_btn >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(settings_callback.settings_inline_data.filter(settings='language'))
-async def settings_callback_language_callback(call: types.CallbackQuery, callback_data: dict, user_settings: UserSettings):
+async def settings_callback_language_callback_btn(call: types.CallbackQuery, callback_data: dict, user_settings: UserSettings):
     user_settings = SettingsService.update_language(callback_data['value'], user_settings)
 
     await call.message.answer(
-        translations.get('callbacks.answers.language-updated-to').format(language=user_settings.language if user_settings else None),
-        reply_markup=example_keyboard.get_main_keyboard()
+        translations.get('callbacks.answers.language-updated-to').format(language=user_settings.language if user_settings else None)
     )
 
 
+# <<<<<<<<<<<<<<<<<< /settings callback => rocket => callback_btn >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(settings_callback.settings_inline_data.filter(settings='rocket', value=['domain', 'user_id', 'token']))
-async def settings_callback_language_callback(call: types.CallbackQuery, callback_data: dict):
+async def settings_callback_rocket_callback_btn(call: types.CallbackQuery, callback_data: dict):
     value = callback_data['value']
 
     if value == 'domain':
@@ -80,8 +82,9 @@ async def settings_callback_language_callback(call: types.CallbackQuery, callbac
     )
 
 
+# <<<<<<<<<<<<<<<<<< /settings callback => rocket => check_settings >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(settings_callback.settings_inline_data.filter(settings='rocket', value='check_settings'))
-async def settings_callback_language_callback(call: types.CallbackQuery, user_settings: UserSettings):
+async def settings_callback_rocket_check_settings(call: types.CallbackQuery, user_settings: UserSettings):
     check_result = SettingsService.check_settings_rocket(user_settings)
 
     await call.message.answer(
@@ -89,8 +92,9 @@ async def settings_callback_language_callback(call: types.CallbackQuery, user_se
     )
 
 
+# <<<<<<<<<<<<<<<<<< /settings callback => rocket => send_notifications >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(settings_callback.settings_inline_data.filter(settings='rocket', value='send_notifications'))
-async def settings_callback_language_callback(call: types.CallbackQuery, user_settings: UserSettings):
+async def settings_callback_rocket_send_notifications(call: types.CallbackQuery, user_settings: UserSettings):
     SettingsService.update_settings_rocket_send_notifications(user_settings)
     inline = SettingsService.get_settings_rocket_callback({
         'notifications_status': '✅' if user_settings.send_notifications else '❌'
@@ -98,15 +102,16 @@ async def settings_callback_language_callback(call: types.CallbackQuery, user_se
     await call.message.edit_text(
         translations.get('callbacks.answers.choose-rocket-setting').format(
             domain=user_settings.rocket_domain,
-            user_id=user_settings.rocket_user_id,
-            token=user_settings.rocket_token
+            user_id=SettingsService.hide_param_part(user_settings.rocket_user_id),
+            token=SettingsService.hide_param_part(user_settings.rocket_token)
         ), 
         reply_markup=inline
     )
 
 
+# <<<<<<<<<<<<<<<<<< /settings callback => rocket => instruction >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(settings_callback.settings_inline_data.filter(settings='rocket', value='instruction'))
-async def settings_callback_language_callback(call: types.CallbackQuery, user_settings: UserSettings):
+async def settings_callback_rocket_instruction(call: types.CallbackQuery, user_settings: UserSettings):
     
     root_path = sys.path[0]
     images = {
@@ -139,8 +144,9 @@ async def settings_callback_language_callback(call: types.CallbackQuery, user_se
     await call.message.answer(translations.get('callbacks.settings.rocket.instruction.7'))
 
 
+# <<<<<<<<<<<<<<<<<< /settings callback => rocket => state * >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(settings_callback.state_back_inline_data.filter(), state='*')
-async def settings_callback_language_callback(call: types.CallbackQuery, state: FSMContext, user_settings: UserSettings):
+async def settings_callback_rocket_state(call: types.CallbackQuery, state: FSMContext, user_settings: UserSettings):
     await state.finish()
     inline = SettingsService.get_settings_rocket_callback({
         'notifications_status': '✅' if user_settings.send_notifications else '❌'
@@ -148,15 +154,16 @@ async def settings_callback_language_callback(call: types.CallbackQuery, state: 
     await call.message.edit_text(
         translations.get('callbacks.answers.choose-rocket-setting').format(
             domain=user_settings.rocket_domain,
-            user_id=user_settings.rocket_user_id,
-            token=user_settings.rocket_token
+            user_id=SettingsService.hide_param_part(user_settings.rocket_user_id),
+            token=SettingsService.hide_param_part(user_settings.rocket_token)
         ), 
         reply_markup=inline
     )
 
 
+# <<<<<<<<<<<<<<<<<< /settings callback => rocket => state * >>>>>>>>>>>>>>>>>>
 @settings.dp.message_handler(state='*')
-async def rocket_form_handler(message: types.Message, state: FSMContext, user_settings: UserSettings):
+async def settings_callback_rocket_state_message_handler(message: types.Message, state: FSMContext, user_settings: UserSettings):
     data = await state.get_data()
 
     message_id = data.get('message_id')
@@ -176,8 +183,8 @@ async def rocket_form_handler(message: types.Message, state: FSMContext, user_se
     await message.answer(
         translations.get('callbacks.answers.choose-rocket-setting').format(
             domain=user_settings.rocket_domain,
-            user_id=user_settings.rocket_user_id,
-            token=user_settings.rocket_token
+            user_id=SettingsService.hide_param_part(user_settings.rocket_user_id),
+            token=SettingsService.hide_param_part(user_settings.rocket_token)
         ),
         reply_markup=inline
     )

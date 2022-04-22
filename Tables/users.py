@@ -15,7 +15,6 @@ from datetime import datetime
 
 from Database import Base
 from Database.metadata import metadata
-from Tables import user_last_messages
 from Tables.BaseModel import BaseModel
 
 class User(Base, BaseModel):
@@ -59,7 +58,8 @@ class User(Base, BaseModel):
                 User.chat_id == chat_id
             ).first()
     
-    def get_all_users(session: Session) -> list:
+
+    def get_all_users_with_notifications(session: Session) -> list:
         return session.query(User).all()
 
 

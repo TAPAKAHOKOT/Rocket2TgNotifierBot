@@ -13,6 +13,11 @@ from Configs import (
 
 class SettingsService:
     @staticmethod
+    def hide_param_part(param: str, size: int = 4) -> str:
+        return param[:size] + '...' + param[-size:]
+
+
+    @staticmethod
     def get_settings_main_callback() -> InlineKeyboardMarkup:
         return settings_callback.get_main_inline()
     

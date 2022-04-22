@@ -26,7 +26,7 @@ class ScheduleService:
     @staticmethod
     async def update_users_notifications():
         with Session(engine, expire_on_commit=False) as session, session.begin():
-            for user in User.get_all_users(session):
+            for user in User.get_all_users_with_notifications(session):
                 await ScheduleService.send_user_new_messages(user, user.user_settings, user.user_last_messages)
     
     @staticmethod

@@ -16,14 +16,8 @@ translations = {
     },
     'keyboards': {
         'answers': {
-            'hello': 'Hi Hello',
-            'joke': '<<Funny Joke>>',
-            'another-keyboard': 'Open another keyboard'
         },
         'buttons': {
-            'hi': 'Hi',
-            'joke': 'Joke',
-            'another-keyboard': 'Another keyboard'
         }
     },
     'callbacks': {
@@ -38,7 +32,7 @@ translations = {
             'number-value': "Number value: {value}",
             'letter-value': "Letter value: {value}",
             'choose-language': 'Choose language',
-            'choose-rocket-setting': 'Choose rocket setting\ndomain={domain}\nuser_id={user_id}\ntoken={token}',
+            'choose-rocket-setting': 'Choose rocket setting\n\ndomain=[ {domain} ]\n\nuser_id=[ {user_id} ]\n\ntoken=[ {token} ]',
             'language-updated-to': 'Language updated to {language}'
         },
         'keyboards': {
@@ -46,14 +40,6 @@ translations = {
                 'language': 'Language',
                 'rocket': 'Rocket'
             },
-            'example': {
-                '1': '1',
-                '2': '2',
-                '3': '3',
-                'a': 'A',
-                'b': 'B',
-                'c': 'C'
-            }
         },
         'state-back': {
             'rocket-form': "Past {value} or press 'Cancel'"

@@ -47,6 +47,9 @@ class NotificationsService:
 
     @staticmethod
     def get_all_new_messages(messages: dict, user_last_messages: list) -> dict:
+        if not messages:
+            return {}
+            
         messages_id = messages.keys()
         user_last_messages = {m.rocket_message_id: m.rocket_updated_at for m in user_last_messages}
 
