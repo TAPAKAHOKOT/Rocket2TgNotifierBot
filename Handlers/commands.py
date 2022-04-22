@@ -4,8 +4,7 @@ from Filters.RolesFilter import RolesFilter
 from Settings import settings
 from Configs import translations
 from Services import (
-    SettingsService, 
-    NotificationsService
+    SettingsService
 )
 from Keyboards import commands_keyboards
 from Filters import RolesFilter
@@ -46,9 +45,3 @@ async def command_admin(message: types.Message, is_root, is_admin):
         )
     )
     await message.answer(answer_message)
-
-
-# <<<<<<<<<<<<<<<<<< Any message >>>>>>>>>>>>>>>>>>
-@settings.dp.message_handler()
-async def any_message(message: types.Message):
-    await message.answer(translations.get('answers.dont-understand'))

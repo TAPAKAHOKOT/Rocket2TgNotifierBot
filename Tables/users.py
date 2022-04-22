@@ -4,7 +4,8 @@ from sqlalchemy import (
     String,
     Integer,
     DateTime,
-    text
+    text,
+    or_
 )
 from sqlalchemy.orm import (
     relationship,
@@ -17,6 +18,7 @@ from Database import Base
 from Database.metadata import metadata
 from Tables.BaseModel import BaseModel
 from Tables.user_settings import UserSettings
+from Tables.roles import Role
 
 class User(Base, BaseModel):
     __tablename__ = 'users'
@@ -63,6 +65,12 @@ class User(Base, BaseModel):
     def get_all_users_with_notifications(session: Session) -> list:
         return session.query(User).join(UserSettings).where(
             UserSettings.send_notifications == True
+        ).all()
+    
+
+    def get_all_admins(session: Session) -> list:
+        return session.query(User).join(Role).where(
+            or_(Role.role == 'root', Role.role == 'admin')
         ).all()
 
 

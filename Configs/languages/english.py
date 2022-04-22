@@ -16,8 +16,12 @@ translations = {
     },
     'keyboards': {
         'answers': {
+            'wriwrite-to-devte_to_dev': 'Enter below the message you want to send to the developers',
+            'writed-to-dev': 'Message sent to developers',
+            'message-from-user': 'Message from user [ {username} ]:\n\n{message}'
         },
         'buttons': {
+            'write-to-dev': 'Write to the developer📝'
         }
     },
     'callbacks': {
