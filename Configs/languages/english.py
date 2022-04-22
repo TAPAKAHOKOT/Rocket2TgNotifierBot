@@ -1,8 +1,8 @@
 translations = {
     'commands': {
         'answers': {
-            'start': 'Welcome, {user_name}!\nI am - *{bot_name}*, i will help you to get notifications from rocket. Press /help to get an instruction',
-            'help': 'I will send you notifications from the rocket right here.\n\nBut for this you need to configure three fields in the /settings menu ("Rocket" button next): domain, user_id, token. To configure them, just click on the desired menu item and send the desired value in text\n\nTo check the settings in / settings ("Rocket" button next), there is a "Check settings" button, and if it is not clear where to get the data for settings, you can see the "instruction"\n\nAfter successfully checking the settings, you can click "Notifications" to enable notifications',
+            'start': 'Welcome, {user_name}!\nI am - *{bot_name}*, i will help you to get notifications from rocket. Press /help to get more information.',
+            'help': 'I will send you notifications from the rocket right here.\n\nBut for this you need to configure three fields in the /settings menu ("Rocket" button next): domain, user_id, token. To configure them, just click on the desired menu item and send the desired text value\n\nTo check the settings in /settings ("Rocket" button next), there is a "Check settings" button, and if it is not clear where to get the data for settings, you can see the "instruction"\n\nAfter successfully checking the settings, you can click "Notifications" to enable notifications',
             'settings': 'Choose a setting',
             'role': {
                 'root': "You'r a boss!",
