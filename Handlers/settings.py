@@ -11,6 +11,8 @@ from Callbacks import settings_callback
 from Tables import UserSettings
 from States import RocketForm
 
+from Keyboards import commands_keyboards
+
 
 # <<<<<<<<<<<<<<<<<< /settings callback => language >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(settings_callback.menu_inline_data.filter(value='language'))
@@ -49,9 +51,10 @@ async def settings_callback_language_back(call: types.CallbackQuery):
 @settings.dp.callback_query_handler(settings_callback.settings_inline_data.filter(settings='language'))
 async def settings_callback_language_callback_btn(call: types.CallbackQuery, callback_data: dict, user_settings: UserSettings):
     user_settings = SettingsService.update_language(callback_data['value'], user_settings)
-
+    keyboard = commands_keyboards.get_start_keyboard()
     await call.message.answer(
-        translations.get('callbacks.answers.language-updated-to').format(language=user_settings.language if user_settings else None)
+        translations.get('callbacks.answers.language-updated-to').format(language=user_settings.language if user_settings else None),
+        reply_markup=keyboard
     )
 
 

@@ -1,9 +1,11 @@
+import sys
+
 from configparser import ConfigParser
 from .Translations import Translations
 
 
 app_config = ConfigParser()
-app_config.read("Configs/app.ini")
+app_config.read(sys.path[0] + "/Configs/app.ini")
 
 
 def get_available_languages():

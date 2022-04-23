@@ -13,7 +13,7 @@ from Filters import RolesFilter
 # <<<<<<<<<<<<<<<<<< Command /start >>>>>>>>>>>>>>>>>>
 @settings.dp.message_handler(commands=["start"])
 async def command_start(message: types.Message):
-    keyboard = commands_keyboards.start
+    keyboard = commands_keyboards.get_start_keyboard()
     await message.answer(
         translations.get('commands.answers.start').format(
             user_name=message['from']['first_name'], 
