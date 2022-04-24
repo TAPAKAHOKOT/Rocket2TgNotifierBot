@@ -146,6 +146,8 @@ async def settings_callback_rocket_instruction(call: types.CallbackQuery, user_s
 
     await call.message.answer(translations.get('callbacks.settings.rocket.instruction.7'))
 
+    await call.message.answer(translations.get('callbacks.settings.rocket.instruction.8'))
+
 
 # <<<<<<<<<<<<<<<<<< /settings callback => rocket => state * >>>>>>>>>>>>>>>>>>
 @settings.dp.callback_query_handler(settings_callback.state_back_inline_data.filter(), state='*')

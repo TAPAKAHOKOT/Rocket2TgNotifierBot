@@ -61,7 +61,8 @@ translations = {
                     '4': 'Enter any token name, check "Ignore Two Factor authentication" and click "Add"',
                     '5': 'In the comprehensive popup, copy "Token" and "User id" into your notes to send to the bot',
                     '6': 'In the line with the page address, copy the domain (highlighted in the photo)',
-                    '7': 'All copied data is needed to configure bot in /settings->rocket menu to reject domain, userid and token'
+                    '7': 'All copied data is needed to configure bot in /settings->rocket menu to reject domain, userid and token',
+                    '8': 'Data sample:\n\ndomain: [ rocket.mgts.ru ]\n\nuser id: [ 6iuKa4igFYuqQoPNl ]\n\ntoken: [ 8l_RyU0hJFilfFru-oBG3T8mT92v7T_SPVrSEW9mpGq ]'
                 }
             }
         }

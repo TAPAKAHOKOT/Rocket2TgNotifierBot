@@ -61,7 +61,8 @@ translations = {
                     '4': 'Введите любое название токена, поставьте галочку на "Ignore Two Factor Authentification" и нажмите "Add"',
                     '5': 'Во всплывшем popup-е скопируйте "Token" и "User id" в свои заметки, чтобы отправить их боту',
                     '6': 'В строке с адресом страницы скопируйте домен (выделен на фото)',
-                    '7': 'Все скопированные данные нужны для настройки бота в меню /settings->rocket пункты domain, user id и token'
+                    '7': 'Все скопированные данные нужны для настройки бота в меню /settings->rocket пункты domain, user id и token',
+                    '8': 'Пример данных:\n\nдомен: [ rocket.mgts.ru ]\n\nuser id: [ 6iuKa4igFYuqQoPNl ]\n\ntoken: [ 8l_RyU0hJFilfFru-oBG3T8mT92v7T_SPVrSEW9mpGq ]'
                 }
             }
         }
