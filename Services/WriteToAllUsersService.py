@@ -16,3 +16,4 @@ class WriteToAllUsersService:
                     user.chat_id,
                     translations.get('keyboards.answers.message-from-admin-to-all-users').format(message=message)
                 )
+
