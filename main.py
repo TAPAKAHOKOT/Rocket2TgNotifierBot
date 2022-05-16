@@ -11,7 +11,10 @@ from Middlewares import (
     SetupRoleMiddleware,
     TranslationMiddleware
 )
-from Filters import RolesFilter
+from Filters import (
+    IsAdminFilter,
+    RolesFilter
+)
 from Services import ScheduleService
 
 async def on_startup(x):
@@ -28,6 +31,7 @@ def setup_middlewares():
     settings.dp.middleware.setup(TranslationMiddleware())
 
 def bind_filters():
+    settings.dp.filters_factory.bind(IsAdminFilter)
     settings.dp.filters_factory.bind(RolesFilter)
 
 def start_polling():

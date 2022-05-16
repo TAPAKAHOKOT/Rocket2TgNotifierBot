@@ -1,3 +1,4 @@
 from .commands import *
-from .common import *
+from .admin import *
 from .settings import *
+from .common import *

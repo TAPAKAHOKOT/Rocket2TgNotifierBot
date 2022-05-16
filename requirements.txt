@@ -6,3 +6,4 @@ SQLAlchemy==1.4.35
 alembic==1.7.7
 asyncio==3.4.3
 async-timeout==4.0.2
+requests==2.27.1

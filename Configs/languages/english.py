@@ -18,10 +18,14 @@ translations = {
         'answers': {
             'write-to-dev': 'Enter below the message you want to send to the developers',
             'writed-to-dev': 'Message sent to developers',
-            'message-from-user': 'Message from user [ {username} ]:\n\n{message}'
+            'write-to-all-users': 'Enter below the message you want to send to all users',
+            'writed-to-all-users': 'Message sent to all users',
+            'message-from-user': 'Message from user [ {username} ]:\n\n{message}',
+            'message-from-admin-to-all-users': 'Message from admins:\n\n{message}',
         },
         'buttons': {
-            'write-to-dev': 'Write to the developer📝'
+            'write-to-dev': 'Write to the developer📝',
+            'write-to-all-users': 'Write to all users📝'
         }
     },
     'callbacks': {

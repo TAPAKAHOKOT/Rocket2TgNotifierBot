@@ -150,7 +150,7 @@ async def settings_callback_rocket_instruction(call: types.CallbackQuery, user_s
 
 
 # <<<<<<<<<<<<<<<<<< /settings callback => rocket => state * >>>>>>>>>>>>>>>>>>
-@settings.dp.callback_query_handler(settings_callback.state_back_inline_data.filter(), state='*')
+@settings.dp.callback_query_handler(settings_callback.state_back_inline_data.filter(), state=[RocketForm.domain, RocketForm.user_id, RocketForm.token])
 async def settings_callback_rocket_state(call: types.CallbackQuery, state: FSMContext, user_settings: UserSettings):
     await state.finish()
     inline = SettingsService.get_settings_rocket_callback({
@@ -167,7 +167,7 @@ async def settings_callback_rocket_state(call: types.CallbackQuery, state: FSMCo
 
 
 # <<<<<<<<<<<<<<<<<< /settings callback => rocket => state * >>>>>>>>>>>>>>>>>>
-@settings.dp.message_handler(state='*')
+@settings.dp.message_handler(state=[RocketForm.domain, RocketForm.user_id, RocketForm.token])
 async def settings_callback_rocket_state_message_handler(message: types.Message, state: FSMContext, user_settings: UserSettings):
     data = await state.get_data()
 
