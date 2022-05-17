@@ -1,7 +1,6 @@
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from aiogram import types
-from numpy import True_
 
 from Settings import settings
 from Configs import translations
@@ -12,8 +11,7 @@ from Services import (
 )
 from Tables import (
     User,
-    UserSettings,
-    UserRoomsLists
+    UserSettings
 )
 from Enums import UserRoomsListTypesEnum
 from Callbacks import user_rooms_list_callback
