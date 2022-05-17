@@ -51,6 +51,11 @@ class User(Base, BaseModel):
         lazy='joined'
     )
 
+    user_rooms_lists = relationship(
+        'UserRoomsLists',
+        lazy='joined'
+    )
+
 
     def get_class(self):
         return User

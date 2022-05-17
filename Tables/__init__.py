@@ -14,3 +14,7 @@ from .user_settings import (
     UserSettings,
     user_settings_table
 )
+from .user_rooms_lists import (
+    UserRoomsLists,
+    user_rooms_lists_table
+)

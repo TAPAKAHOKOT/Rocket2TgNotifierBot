@@ -3,3 +3,4 @@ from .NotificationsService import NotificationsService
 from .ScheduleService import ScheduleService
 from .WriteToDevService import WriteToDevService
 from .WriteToAllUsersService import WriteToAllUsersService
+from .UserRoomsListService import UserRoomListService

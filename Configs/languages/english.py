@@ -25,7 +25,8 @@ translations = {
         },
         'buttons': {
             'write-to-dev': 'Write to the developer📝',
-            'write-to-all-users': 'Write to all users📝'
+            'write-to-all-users': 'Write to all users📝',
+            'black-list': 'Black list'
         }
     },
     'callbacks': {

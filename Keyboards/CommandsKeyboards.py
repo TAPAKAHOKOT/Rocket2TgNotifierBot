@@ -10,6 +10,10 @@ class CommandsKeyboards:
             types.KeyboardButton(text='/settings'),
 
             types.KeyboardButton(''),
+            types.KeyboardButton(text=translations.get('keyboards.buttons.black-list')),
+            types.KeyboardButton(''),
+
+            types.KeyboardButton(''),
             types.KeyboardButton(text=translations.get('keyboards.buttons.write-to-dev')),
             types.KeyboardButton('')
         )
