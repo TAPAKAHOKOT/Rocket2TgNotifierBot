@@ -35,7 +35,7 @@ async def write_to_dev_message(message: types.Message, state: FSMContext):
 @settings.dp.message_handler(Text(equals=translations.get_in_all_languages('keyboards.buttons.black-list')))
 async def black_list(message: types.Message, user: User, user_settings: UserSettings):
     callback = UserRoomListService.get_list_callback(user, user_settings, UserRoomsListTypesEnum.BLACK.name)
-    await message.answer("Black list", reply_markup=callback)
+    await message.answer(translations.get('callbacks.default.black-list'), reply_markup=callback)
 
 
 # <<<<<<<<<<<<<<<<<< Black list callback add >>>>>>>>>>>>>>>>>>
@@ -43,7 +43,7 @@ async def black_list(message: types.Message, user: User, user_settings: UserSett
 async def black_list(call: types.CallbackQuery, callback_data: dict, user: User, user_settings: UserSettings):
     UserRoomListService.add_to_list(user, UserRoomsListTypesEnum.BLACK.name, callback_data.get('rid'))
     callback = UserRoomListService.get_list_callback(user, user_settings, UserRoomsListTypesEnum.BLACK.name)
-    await call.message.edit_text(translations.get('commands.answers.settings'), reply_markup=callback)
+    await call.message.edit_text(translations.get('callbacks.default.black-list'), reply_markup=callback)
 
 
 # <<<<<<<<<<<<<<<<<< Black list callback delete >>>>>>>>>>>>>>>>>>
@@ -51,7 +51,7 @@ async def black_list(call: types.CallbackQuery, callback_data: dict, user: User,
 async def black_list(call: types.CallbackQuery, callback_data: dict, user: User, user_settings: UserSettings):
     UserRoomListService.remove_from_list(UserRoomsListTypesEnum.BLACK.name, callback_data.get('rid'))
     callback = UserRoomListService.get_list_callback(user, user_settings, UserRoomsListTypesEnum.BLACK.name)
-    await call.message.edit_text(translations.get('commands.answers.settings'), reply_markup=callback)
+    await call.message.edit_text(translations.get('callbacks.default.black-list'), reply_markup=callback)
 
 
 # <<<<<<<<<<<<<<<<<< Any message >>>>>>>>>>>>>>>>>>

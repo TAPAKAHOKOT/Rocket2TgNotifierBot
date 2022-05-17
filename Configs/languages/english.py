@@ -35,7 +35,8 @@ translations = {
             'cancel': 'Cansel',
             'check-settings': 'Check settings',
             'check-settings-status': 'Settings checking status: {status}',
-            'instruction': 'Instruction'
+            'instruction': 'Instruction',
+            'black-list': 'Your black list'
         },
         'answers': {
             'number-value': "Number value: {value}",

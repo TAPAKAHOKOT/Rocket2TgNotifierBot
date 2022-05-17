@@ -35,7 +35,8 @@ translations = {
             'cancel': 'Отменить',
             'check-settings': 'Проверить настройки',
             'check-settings-status': 'Статус проверки настроек: {status}',
-            'instruction': 'Инструкция'
+            'instruction': 'Инструкция',
+            'black-list': 'Ваш черный список'
         },
         'answers': {
             'number-value': "Значение номера: {value}",

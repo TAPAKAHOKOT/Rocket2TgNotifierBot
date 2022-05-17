@@ -2,7 +2,7 @@ from aiogram import types
 from Configs import translations
 
 class CommandsKeyboards:
-    def get_start_keyboard(self, is_root, is_admin) -> types.ReplyKeyboardMarkup:
+    def get_start_keyboard(self, is_root=False, is_admin=False) -> types.ReplyKeyboardMarkup:
         start = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
         start.add(
             types.KeyboardButton(text='/start'), 
